@@ -1,0 +1,18 @@
+[Unit]
+Description=Daemon with providing SRS sendmail milter (%I)
+After=network.target
+#Wants=postfix.service OR sendmail.service
+
+[Service]
+Type=forking
+User=srs-milt
+Group=srs-milt
+PIDFile=/var/run/srs-milter/%i.pid
+ExecStart=/usr/sbin/srs-milter --daemon --config=/etc/srs-milter.%i.conf --pidfile=/var/run/srs-milter/%i.pid
+PrivateTmp=true
+#PrivateDevices=true
+#ProtectSystem=full
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target

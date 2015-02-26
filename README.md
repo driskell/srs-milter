@@ -18,6 +18,19 @@ Dependencies
 
 Both libraries contain several patches that are not part of official source code but comes from different distributions (debian, freebsd).
 
+Installation
+------------
+
+### Building sources
+
+* clone github srs-milter repository
+* compile source in `src` subdirectory using `make` command
+* startup script/unit available in `dist` subdirectory
+
+### RPM packages
+
+Source and binary packages for RHEL/CentOS/Fedora available in repositories at http://copr.fedoraproject.org/coprs/vokac/srs-milter/
+
 Configuration
 -------------
 
@@ -62,6 +75,25 @@ Outgoing mail:
   ```
 
 * NOTE: If you use virtual_alias_maps for outgoing mails to change recipient address you can't use same smtpd with srs-milter (it doesn't see changes from rewriting virtual aliases). In main.cf you can define new smtpd that listens on different port and forward all outgoing mails throught this smtpd configured with srs-milter.
+
+Service startup
+---------------
+
+SysV initscript (service configuration via /etc/sysconfig/srs-milter):
+  ```
+  # enable srs-milter service
+  /sbin/chkconfig srs-milter on
+  # start srs-milter service
+  /sbin/service srs-milter start
+  ```
+
+Systemd (service configuration via /etc/srs-milter.*.conf files):
+  ```
+  # enable srs-milter service
+  systemctl enable srs-milter@default
+  # start srs-milter service
+  systemctl start srs-milter@default
+  ```
 
 Other notes
 -----------

@@ -1,11 +1,12 @@
 BINDIR =	/usr/sbin
 MANDIR =	/usr/man/man8
 #CC =		gcc
+DEBUG =		-g3
 DEFINES =	
 INCDIRS =	
 LIBDIRS =	
-CFLAGS =	-Wall $(DEFINES) $(INCDIRS)
-LDFLAGS =	-g3 $(LIBDIRS)
+CFLAGS =	-Wall $(DEBUG) $(DEFINES) $(INCDIRS)
+LDFLAGS =	$(DEBUG) $(LIBDIRS)
 INSTALL =	/usr/bin/install
 
 all:			srs-filter
